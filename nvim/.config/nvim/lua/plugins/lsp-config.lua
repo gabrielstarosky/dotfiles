@@ -12,6 +12,11 @@ return {
     opts = {
       auto_install = true,
     },
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = { "pyright", "lua_ls" }
+      })
+    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -35,6 +40,7 @@ return {
       lspconfig.lua_ls.setup({
         capabilities = capabilities
       })
+      lspconfig.pyright.setup({})
 
       vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
       vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
